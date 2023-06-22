@@ -21,8 +21,8 @@
 "scripts": {
   "start": "react-scripts start",
   "build": "react-scripts build",
-  "start:dev": "cross-env NODE_ENV=development nodemon ./db/server.js",
-  "start:prod": "cross-env NODE_ENV=production node ./db/server.js"
+  "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
+  "start:prod": "cross-env NODE_ENV=production node ./server.js"
 },
   "eslintConfig": {
     "extends": [
