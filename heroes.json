@@ -1,0 +1,82 @@
+[
+  {
+    "nickname": "Superman",
+    "real_name": "Clark Kent",
+    "origin_description": "He was born Kal-El on the planet Krypton, before being rocketed to Earth as an infant by his scientist father Jor-El, moments before Krypton's destruction...",
+    "superpowers": ["solar energy absorption and healing factor", "solar flare and heat vision", "solar invulnerability", "flight"],
+    "catch_phrase": "Look, up in the sky, it's a bird, it's a plane, it's Superman!",
+    "images": ["https://res.cloudinary.com/dhh42ueby/image/upload/v1687616871/superman-wallpaper-for-mac-7abs8lzmwn7dof7s_i335h4.jpg", "https://res.cloudinary.com/dhh42ueby/image/upload/v1687616871/wallpaper-superman-artwork-hd-creative-graphics-cftub0afbhjkm3h0_pviw7r.jpg"]
+  },
+  {
+    "nickname": "Batman",
+    "real_name": "Bruce Wayne",
+    "origin_description": "After witnessing the murder of his parents as a child, Bruce Wayne swore vengeance and trained himself to become a crime-fighting vigilante known as Batman.",
+    "superpowers": ["genius-level intellect", "peak physical condition", "martial arts mastery", "access to advanced technology"],
+    "catch_phrase": "I'm Batman!",
+    "images": ["https://res.cloudinary.com/dhh42ueby/image/upload/v1687609763/emmanuel-denier-FbxhG_8cXfs-unsplash_fgdtag.jpg", "https://res.cloudinary.com/dhh42ueby/image/upload/v1687609757/marcin-lukasik-uYpOYyJdhRE-unsplash_pc4mm9.jpg"]
+  },
+  {
+    "nickname": "Wonder Woman",
+    "real_name": "Diana Prince",
+    "origin_description": "Diana Prince is an Amazon princess who was granted superhuman powers by the Greek gods.",
+    "superpowers": ["superhuman strength", "speed", "agility", "durability", "flight", "enhanced senses", "lasso of truth"],
+    "catch_phrase": "I will fight for those who cannot fight for themselves.",
+    "images": ["https://res.cloudinary.com/dhh42ueby/image/upload/v1687616383/wonder_woman_1_iosbaf.png", "https://res.cloudinary.com/dhh42ueby/image/upload/v1687616383/wonder_woman_1_iosbaf.png"]
+  },
+  {
+    "nickname": "Spider-Man",
+    "real_name": "Peter Parker",
+    "origin_description": "Peter Parker gained spider-like abilities after being bitten by a radioactive spider.",
+    "superpowers": ["wall-crawling", "enhanced strength", "agility", "reflexes", "spider-sense", "web-slinging"],
+    "catch_phrase": "With great power comes great responsibility.",
+    "images": ["https://res.cloudinary.com/dhh42ueby/image/upload/v1687610041/ai-generated-gcdf8c6b4c_640_yvc1i1.png", "https://res.cloudinary.com/dhh42ueby/image/upload/v1687610033/ai-generated-gebd152a6b_640_r58y02.png"]
+  },
+  {
+    "nickname": "Captain America",
+    "real_name": "Steve Rogers",
+    "origin_description": "Steve Rogers was enhanced to the peak of human potential and became the symbol of freedom and justice.",
+    "superpowers": ["enhanced strength", "speed", "agility", "endurance", "expert martial artist", "indestructible shield"],
+    "catch_phrase": "I can do this all day.",
+    "images": ["https://res.cloudinary.com/dhh42ueby/image/upload/v1687615804/captain-america-g5dec8caa5_640_h6gafx.jpg", "https://res.cloudinary.com/dhh42ueby/image/upload/v1687615806/ai-generated-g4eb24ed2c_640_emmsrm.png"]
+  },
+  {
+    "nickname": "Iron Man",
+    "real_name": "Tony Stark",
+    "origin_description": "Tony Stark built a powered suit of armor to save his own life and became a high-tech superhero.",
+    "superpowers": ["genius-level intellect", "advanced technology suit with flight", "repulsor blasts", "other weapons"],
+    "catch_phrase": "I am Iron Man.",
+    "images": ["https://res.cloudinary.com/dhh42ueby/image/upload/v1687609915/iron-man-g9f2a17288_640_rge5ur.jpg", "https://res.cloudinary.com/dhh42ueby/image/upload/v1687609915/igor-bumba-rkaahInFlBg-unsplash_iud60t.jpg"]
+  },
+  {
+    "nickname": "Hulk",
+    "real_name": "Bruce Banner",
+    "origin_description": "Bruce Banner was exposed to gamma radiation, which causes him to transform into a giant, green-skinned creature known as the Hulk when angered or provoked.",
+    "superpowers": ["superhuman strength", "regenerative healing factor", "increased durability"],
+    "catch_phrase": "Hulk smash!",
+    "images": ["https://res.cloudinary.com/dhh42ueby/image/upload/v1687615964/hulk-gbf1beb7dc_640_lkfo4e.jpg", "https://res.cloudinary.com/dhh42ueby/image/upload/v1687615964/hulk-g92d5c2b2c_640_tv8ku5.jpg"]
+  },
+  {
+    "nickname": "Black Widow",
+    "real_name": "Natasha Romanoff",
+    "origin_description": "Natasha Romanoff is a highly skilled spy and assassin who became a member of the Avengers.",
+    "superpowers": ["expert martial artist", "master tactician", "espionage skills", "access to advanced weaponry"],
+    "catch_phrase": "I'm always picking up after you boys.",
+    "images": ["https://res.cloudinary.com/dhh42ueby/image/upload/v1687616689/black-widow-1920-x-1586-picture-h5uraoy1nak84t40_ogoy25.jpg", "https://res.cloudinary.com/dhh42ueby/image/upload/v1687616689/black-widow-2880-x-1800-picture-c8y8notq9nmezt1m_brqz8t.jpg"]
+  },
+  {
+    "nickname": "Thor",
+    "real_name": "Thor Odinson",
+    "origin_description": "Thor is the Norse god of thunder who wields the enchanted hammer Mjolnir.",
+    "superpowers": ["superhuman strength", "speed", "durability", "weather manipulation", "flight", "summoning of lightning"],
+    "catch_phrase": "I am Thor, son of Odin!",
+    "images": ["https://res.cloudinary.com/dhh42ueby/image/upload/v1687616776/furious-thor-chris-hemsworth-wujdh18hxr273w72_pbrvy8.jpg", "https://res.cloudinary.com/dhh42ueby/image/upload/v1687616776/chris-hemsworth-as-thor-qzytdg8xliuaelun_mkhf0w.jpg"]
+  },
+  {
+    "nickname": "Black Panther",
+    "real_name": "T'Challa",
+    "origin_description": "T'Challa is the king of Wakanda and inherits the mantle of the Black Panther, a superhero with enhanced abilities.",
+    "superpowers": ["enhanced strength", "speed", "agility", "reflexes", "vibranium suit", "access to advanced Wakandan technology"],
+    "catch_phrase": "Wakanda forever!",
+    "images": ["https://res.cloudinary.com/dhh42ueby/image/upload/v1687612985/wp1869876_lsqdig.jpg", "https://res.cloudinary.com/dhh42ueby/image/upload/v1687612984/wp1869917_h6jwwx.jpg"]
+  }
+]
