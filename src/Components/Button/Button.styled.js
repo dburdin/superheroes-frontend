@@ -17,6 +17,8 @@ export const StyledButton = styled.button`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  justify-content: center;
+  align-items: center;
 
   :not(:disabled):hover,
   :not(:disabled):focus {
@@ -33,6 +35,7 @@ export const StyledButton = styled.button`
   }
   @media (min-width: 320px) and (max-width: 768px) {
     display: flex;
+
     font-size: 12px;
     padding: 5px 10px;
     height: 30px;

@@ -71,24 +71,6 @@ export const CardItem = ({ superHero }) => {
         />
       ) : (
         <Item>
-          <Image src={getImageUrl(images[0])} alt="nickname" />
-          <CardContent>
-            <p>
-              <b>Nickname:</b> {nickname}
-            </p>
-            <p>
-              <b>Real name:</b> {real_name}
-            </p>
-            <p>
-              <b>Origin description:</b> {origin_description}
-            </p>
-            <p>
-              <b>Superpowers:</b> {superpowers.join(",")}
-            </p>
-            <p>
-              <b>Catch phrase:</b> {catch_phrase}
-            </p>
-          </CardContent>
           <ButtonContainer>
             <Button
               onClick={handleEditClick}
@@ -107,6 +89,24 @@ export const CardItem = ({ superHero }) => {
               {isRemoving ? "Removing..." : "X"}
             </Button>
           </ButtonContainer>
+          <Image src={getImageUrl(images[0])} alt="nickname" />
+          <CardContent>
+            <p>
+              <b>Nickname:</b> {nickname}
+            </p>
+            <p>
+              <b>Real name:</b> {real_name}
+            </p>
+            <p>
+              <b>Origin description:</b> {origin_description}
+            </p>
+            <p>
+              <b>Superpowers:</b> {superpowers.join(",")}
+            </p>
+            <p>
+              <b>Catch phrase:</b> {catch_phrase}
+            </p>
+          </CardContent>
         </Item>
       )}
     </>
@@ -123,5 +123,4 @@ CardItem.propTypes = {
     catch_phrase: PropTypes.string.isRequired,
     images: PropTypes.array.isRequired,
   }).isRequired,
-  toggleModal: PropTypes.func.isRequired,
 };
