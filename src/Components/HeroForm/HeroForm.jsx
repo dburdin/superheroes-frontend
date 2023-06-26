@@ -72,9 +72,9 @@ export const HeroForm = ({ toggleModal }) => {
 
       await add(data);
 
-      toast.success("You successfully created a hero");
       toggleModal();
       location.reload();
+      toast.success("You successfully created a hero");
     } catch (error) {
       toast.error("Something went wrong. Check the fields.");
     } finally {
