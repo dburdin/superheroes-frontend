@@ -31,7 +31,7 @@ export const StyledButton = styled.button`
     -webkit-filter: saturate(0.2) opacity(0.5);
     cursor: not-allowed;
   }
-  @media screen and (min-width: 320px) {
+  @media (min-width: 320px) and (max-width: 768px) {
     display: inline;
     font-size: 12px;
     padding: 5px 10px;

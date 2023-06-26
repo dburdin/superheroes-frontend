@@ -17,7 +17,8 @@ const animationBackground = keyframes`
 export const StyledHeader = styled.header`
   @media (min-width: 320px) and (max-width: 768px) {
     display: flex;
-    width: 100%;
+    align-items: center;
+    justify-content: center;
   }
 
   position: sticky;
@@ -52,4 +53,10 @@ export const Logo = styled.a`
   text-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 `;
 
-export const Navigation = styled.nav``;
+export const Navigation = styled.nav`
+  @media (min-width: 320px) and (max-width: 768px) {
+    display: inline;
+    margin-left: 10px;
+    width: 100%;
+  }
+`;
