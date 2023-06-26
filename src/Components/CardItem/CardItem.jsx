@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
-
-import { toast, Toaster } from "react-hot-toast";
 import { useState } from "react";
-import { getImageUrl } from "API/api";
-import { Image, Item, CardContent } from "./CardItem.styled";
+import { toast, Toaster } from "react-hot-toast";
+import { getById, getImageUrl, remove, update, upload } from "API/api";
+import { Image, Item, CardContent, EditorForm } from "./CardItem.styled";
 import { Button } from "Components/Button/Button";
-import { remove } from "API/api";
-import { useHeroContext } from "./context";
+import { Overlay, ModalWindow } from "Components/Modal/Modal.styled";
+import { EditForm } from "Components/EditForm/EditForm";
 
-export const CardItem = ({ superHero, toggleModal }) => {
+export const CardItem = ({ superHero }) => {
   const {
     _id,
     nickname,
@@ -18,22 +17,42 @@ export const CardItem = ({ superHero, toggleModal }) => {
     catch_phrase,
     images,
   } = superHero;
-  const superpowersList = superpowers.join(",");
 
   const [isRemoving, setIsRemoving] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  const OnClickRemoveItem = async (_id) => {
+  const toggleModal = () => {
+    setIsEditing((prevIsEditing) => !prevIsEditing);
+  };
+
+  const handleClickOnOverlay = (event) => {
+    if (event.currentTarget === event.target) {
+      toggleModal();
+    }
+  };
+
+  const handleEditClick = async () => {
     try {
-      setIsRemoving(true);
+      setIsEditing(true);
+      const { data } = await getById(_id);
 
-      if (window.confirm("Are you sure?")) {
-        await remove(_id);
-      }
-
-      toast.success(`You sucsesfully deleted ${nickname} from your list`);
-      location.reload();
+      setSelectedPhoto(data.images[0]);
     } catch (error) {
-      toast.error(`Opps. Something gone wrong`);
+      toast.error("Failed to retrieve hero data");
+    }
+  };
+
+  const handleRemoveClick = async () => {
+    try {
+      if (window.confirm("Are you sure?")) {
+        setIsRemoving(true);
+        await remove(_id);
+        toast.success(`You successfully deleted ${nickname} from your list`);
+        location.reload();
+      }
+    } catch (error) {
+      toast.error("Oops. Something went wrong");
     } finally {
       setIsRemoving(false);
     }
@@ -41,46 +60,56 @@ export const CardItem = ({ superHero, toggleModal }) => {
 
   return (
     <>
-      <Item>
-        <Toaster />
-        <Image src={getImageUrl(images[0])} alt="nickname" />
-        <CardContent>
-          <p>
-            <b>Nickname:</b> {nickname}
-          </p>
-          <p>
-            <b>Real name:</b> {real_name}
-          </p>
-          <p>
-            <b>Origin description:</b> {origin_description}
-          </p>
-          <p>
-            <b>Superpowers:</b> {superpowersList}
-          </p>
-          <p>
-            <b>Catch phrase:</b> {catch_phrase}
-          </p>
-        </CardContent>
-        <Button
-          onClick={() => OnClickEditItem()}
-          style={{ alignSelf: "start" }}
-        >
-          Edit
-        </Button>
-        <Button
-          onClick={() => OnClickRemoveItem(_id)}
-          style={{ alignSelf: "start" }}
-          disabled={isRemoving}
-        >
-          {isRemoving ? "Removing..." : "X"}
-        </Button>
-      </Item>
+      <Toaster />
+      {isEditing ? (
+        <EditForm
+          superHero={superHero}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+          selectedPhoto={selectedPhoto}
+          setSelectedPhoto={setSelectedPhoto}
+        />
+      ) : (
+        <Item>
+          <Image src={getImageUrl(images[0])} alt="nickname" />
+          <CardContent>
+            <p>
+              <b>Nickname:</b> {nickname}
+            </p>
+            <p>
+              <b>Real name:</b> {real_name}
+            </p>
+            <p>
+              <b>Origin description:</b> {origin_description}
+            </p>
+            <p>
+              <b>Superpowers:</b> {superpowers.join(",")}
+            </p>
+            <p>
+              <b>Catch phrase:</b> {catch_phrase}
+            </p>
+          </CardContent>
+          <Button
+            onClick={handleEditClick}
+            style={{ alignSelf: "start", opacity: 0.7 }}
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={handleRemoveClick}
+            style={{ alignSelf: "start", opacity: 0.7 }}
+            disabled={isRemoving}
+          >
+            {isRemoving ? "Removing..." : "X"}
+          </Button>
+        </Item>
+      )}
     </>
   );
 };
 
 CardItem.propTypes = {
-  superHeroes: PropTypes.shape({
+  superHero: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     nickname: PropTypes.string.isRequired,
     real_name: PropTypes.string.isRequired,
@@ -88,6 +117,6 @@ CardItem.propTypes = {
     superpowers: PropTypes.array.isRequired,
     catch_phrase: PropTypes.string.isRequired,
     images: PropTypes.array.isRequired,
-  }),
+  }).isRequired,
   toggleModal: PropTypes.func.isRequired,
 };

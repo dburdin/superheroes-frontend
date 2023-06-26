@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import { StyledButton } from "./Button.styled";
 
 export const Button = ({ children, style, onClick }) => {
-  const handleClick = () => {
+  const handleClick = (event) => {
     if (onClick) {
-      onClick();
+      onClick(event);
     }
   };
 

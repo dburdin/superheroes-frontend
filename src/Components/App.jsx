@@ -1,16 +1,16 @@
 import { toast, Toaster } from "react-hot-toast";
 import { useState, useEffect } from "react";
 
-import { getAll } from "API/api";
-
-import { Container } from "./App.styled";
+import { Loader } from "./Loader/Loader";
+import { Button } from "./Button/Button";
+import { Modal } from "./Modal/Modal";
 import { CardList } from "./CardList/CardList";
 
-import { Loader } from "./Loader/Loader";
 import { Header } from "./Header/Header";
+import { Container } from "./Container/Container";
 
-import { Modal } from "./Modal/Modal";
-import { Button } from "./Button/Button";
+import { fetchData } from "../utils/fetchData";
+import { resetData } from "../utils/resetData";
 
 export const App = () => {
   const [superHeroes, setSuperHeroes] = useState([]);
@@ -22,54 +22,40 @@ export const App = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    setError("");
-    setIsLoading(true);
-
-    const FetchData = async () => {
-      try {
-        const result = await getAll(page, limit);
-        const { totalResult } = result;
-        if (!totalResult) {
-          return;
-        }
-        setSuperHeroes((prev) => [...prev, ...result.data]);
-        setTotalHits(totalResult);
-      } catch (error) {
-        setError(error.message);
-        toast.error("Something gone wrong! Try to reload page.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    FetchData();
+    resetData(setError, setIsLoading);
+    fetchData(
+      page,
+      limit,
+      setSuperHeroes,
+      setTotalHits,
+      setError,
+      setIsLoading,
+      toast
+    );
   }, [limit, page]);
 
   const loadMore = () => {
     setPage((prev) => prev + 1);
   };
-
-  const toggleModal = (superhero) => {
+  const toggleModal = () => {
     setShowModal(!showModal);
   };
 
   return (
     <>
       <Header toggleModal={toggleModal}></Header>
-      <Toaster />
+
       <Container>
+        <Toaster />
         {superHeroes.length > 0 && (
           <CardList toggleModal={toggleModal} superHeroes={superHeroes} />
         )}
-
         {totalHits !== superHeroes.length && !isLoading && (
           <Button onClick={loadMore} style={{ alignSelf: "center" }}>
             LoadMore
           </Button>
         )}
-
         {isLoading && <Loader />}
-
         {showModal && <Modal toggleModal={toggleModal} />}
       </Container>
     </>

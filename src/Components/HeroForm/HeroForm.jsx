@@ -71,10 +71,10 @@ export const HeroForm = ({ toggleModal }) => {
       };
 
       await add(data);
-      toast.success("You successfully created a hero");
 
-      resetForm();
+      toast.success("You successfully created a hero");
       toggleModal();
+      location.reload();
     } catch (error) {
       toast.error("Something went wrong. Check the fields.");
     } finally {
@@ -96,7 +96,7 @@ export const HeroForm = ({ toggleModal }) => {
           validationSchema={validationSchema}
         >
           {({ values }) => (
-            <Form>
+            <Form id="form">
               <Button onClick={toggleModal} style={{ alignSelf: "end" }}>
                 X
               </Button>
@@ -189,7 +189,7 @@ export const HeroForm = ({ toggleModal }) => {
               )}
 
               <SubmitButton type="submit" style={{ alignSelf: "center" }}>
-                Create Hero
+                Add
               </SubmitButton>
             </Form>
           )}

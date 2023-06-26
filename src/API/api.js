@@ -1,14 +1,16 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8000/api/superheroes";
+axios.defaults.baseURL =
+  "https://superheroes-backend-es7x.onrender.com/api/superheroes";
 
 export const getAll = async (page, limit) => {
   const response = await axios.get(`?page=${page}&limit=${limit}`);
   return response.data;
 };
+export const getById = async (id) => await axios.get(`/${id} `);
 export const add = async (value) => await axios.post("/", value);
 export const remove = async (id) => await axios.delete(`/${id}`);
-export const update = async (id) => await axios.put(`/${id}`);
+export const update = async (id, body) => await axios.put(`/${id}`, body);
 
 export const upload = async (file) => {
   return await axios.post("/upload", file);

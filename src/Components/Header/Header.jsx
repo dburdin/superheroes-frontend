@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { StyledHeader, Logo, Navigation, StyledButton } from "./Header.styled";
 import { Button } from "Components/Button/Button";
 
@@ -12,4 +14,8 @@ export const Header = ({ toggleModal }) => {
       </Navigation>
     </StyledHeader>
   );
+};
+
+Header.proppTypes = {
+  toggleModal: PropTypes.func.isRequired,
 };

@@ -1,26 +1,15 @@
 import PropTypes from "prop-types";
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { ModalWindow, Overlay } from "./Modal.styled";
 import { HeroForm } from "../HeroForm/HeroForm";
+import { useKeyPress } from "hooks/useKeyPress";
 
 export const Modal = ({ toggleModal }) => {
   const modalRoot = document.querySelector("#modal-root");
 
-  useEffect(() => {
-    const handlePressOnEsc = (event) => {
-      if (event.code === "Escape") {
-        toggleModal();
-      }
-    };
-
-    window.addEventListener("keydown", handlePressOnEsc);
-    return () => {
-      window.removeEventListener("keydown", handlePressOnEsc);
-    };
-  }, [toggleModal]);
+  useKeyPress("Escape", toggleModal);
 
   const handleClickOnOverlay = (event) => {
     if (event.currentTarget === event.target) {
@@ -28,12 +17,20 @@ export const Modal = ({ toggleModal }) => {
     }
   };
 
+  const handleToggleModal = () => {
+    toggleModal();
+  };
+
   return createPortal(
     <Overlay onClick={handleClickOnOverlay}>
       <ModalWindow>
-        <HeroForm toggleModal={toggleModal}></HeroForm>
+        <HeroForm toggleModal={handleToggleModal}></HeroForm>
       </ModalWindow>
     </Overlay>,
     modalRoot
   );
+};
+
+Modal.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
 };
