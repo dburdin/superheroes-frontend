@@ -5,6 +5,7 @@ import { Loader } from "./Loader/Loader";
 import { Button } from "./Button/Button";
 import { Modal } from "./Modal/Modal";
 import { CardList } from "./CardList/CardList";
+import { ButtonContainer } from "./CardItem/CardItem.styled";
 
 import { Header } from "./Header/Header";
 import { Container } from "./Container/Container";
@@ -51,9 +52,11 @@ export const App = () => {
           <CardList toggleModal={toggleModal} superHeroes={superHeroes} />
         )}
         {totalHits !== superHeroes.length && !isLoading && (
-          <Button onClick={loadMore} style={{ alignSelf: "center" }}>
-            LoadMore
-          </Button>
+          <ButtonContainer>
+            <Button onClick={loadMore} style={{ alignSelf: "center" }}>
+              LoadMore
+            </Button>
+          </ButtonContainer>
         )}
         {isLoading && <Loader />}
         {showModal && <Modal toggleModal={toggleModal} />}

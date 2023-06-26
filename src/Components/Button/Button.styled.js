@@ -32,9 +32,11 @@ export const StyledButton = styled.button`
     cursor: not-allowed;
   }
   @media (min-width: 320px) and (max-width: 768px) {
-    display: inline;
+    display: flex;
     font-size: 12px;
     padding: 5px 10px;
     height: 30px;
+
+    margin: 0 auto;
   }
 `;

@@ -18,8 +18,9 @@ export const StyledHeader = styled.header`
   @media (min-width: 320px) and (max-width: 768px) {
     display: flex;
     align-items: center;
-    justify-content: center;
+    width: 100vw;
   }
+  box-sizing: border-box;
 
   position: sticky;
   top: 0;
@@ -57,6 +58,6 @@ export const Navigation = styled.nav`
   @media (min-width: 320px) and (max-width: 768px) {
     display: inline;
     margin-left: 10px;
-    width: 100%;
+    width: fit-content;
   }
 `;

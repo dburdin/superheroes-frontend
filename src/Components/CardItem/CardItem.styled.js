@@ -33,7 +33,7 @@ export const CardContent = styled.div`
     flex-wrap: wrap;
     gap: 8px;
   }
-
+  width: 100%;
   padding: 2px;
   display: flex;
   flex-direction: column;
@@ -47,7 +47,8 @@ export const ButtonContainer = styled.div`
     gap: 10px;
     margin-top: 10px;
   }
+
   display: flex;
-  align-self: flex-start;
+  align-self: center;
   gap: 5px;
 `;

@@ -101,7 +101,7 @@ export const CardItem = ({ superHero }) => {
             </Button>
             <Button
               onClick={handleRemoveClick}
-              style={{ alignSelf: "start", opacity: 0.7 }}
+              style={{ alignSelf: "center", opacity: 0.7 }}
               disabled={isRemoving}
             >
               {isRemoving ? "Removing..." : "X"}
