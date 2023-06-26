@@ -5,4 +5,7 @@ export const List = styled.ul`
   padding: 15px;
   display: flex;
   flex-direction: column;
+  @media (min-width: 320px) and (max-width: 768px) {
+    display: block;
+  }
 `;

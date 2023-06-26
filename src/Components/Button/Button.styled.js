@@ -31,4 +31,10 @@ export const StyledButton = styled.button`
     -webkit-filter: saturate(0.2) opacity(0.5);
     cursor: not-allowed;
   }
+  @media screen and (min-width: 320px) {
+    display: inline;
+    font-size: 12px;
+    padding: 5px 10px;
+    height: 30px;
+  }
 `;

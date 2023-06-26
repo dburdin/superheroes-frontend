@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { getById, getImageUrl, remove, update, upload } from "API/api";
-import { Image, Item, CardContent, EditorForm } from "./CardItem.styled";
+import { Image, Item, CardContent, ButtonContainer } from "./CardItem.styled";
 import { Button } from "Components/Button/Button";
 import { Overlay, ModalWindow } from "Components/Modal/Modal.styled";
 import { EditForm } from "Components/EditForm/EditForm";
@@ -89,19 +89,24 @@ export const CardItem = ({ superHero }) => {
               <b>Catch phrase:</b> {catch_phrase}
             </p>
           </CardContent>
-          <Button
-            onClick={handleEditClick}
-            style={{ alignSelf: "start", opacity: 0.7 }}
-          >
-            Edit
-          </Button>
-          <Button
-            onClick={handleRemoveClick}
-            style={{ alignSelf: "start", opacity: 0.7 }}
-            disabled={isRemoving}
-          >
-            {isRemoving ? "Removing..." : "X"}
-          </Button>
+          <ButtonContainer>
+            <Button
+              onClick={handleEditClick}
+              style={{
+                alignSelf: "start",
+                opacity: 0.7,
+              }}
+            >
+              Edit
+            </Button>
+            <Button
+              onClick={handleRemoveClick}
+              style={{ alignSelf: "start", opacity: 0.7 }}
+              disabled={isRemoving}
+            >
+              {isRemoving ? "Removing..." : "X"}
+            </Button>
+          </ButtonContainer>
         </Item>
       )}
     </>

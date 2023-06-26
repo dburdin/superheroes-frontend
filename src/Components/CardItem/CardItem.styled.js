@@ -8,6 +8,10 @@ export const Item = styled.li`
   :not(:last-child) {
     margin-bottom: 15px;
   }
+  @media (min-width: 320px) and (max-width: 768px) {
+    display: block;
+    text-align: center;
+  }
 `;
 
 export const Image = styled.img`
@@ -24,8 +28,26 @@ export const Image = styled.img`
 `;
 
 export const CardContent = styled.div`
+  @media (min-width: 320px) and (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
   padding: 2px;
   display: flex;
   flex-direction: column;
   gap: 2px;
+`;
+
+export const ButtonContainer = styled.div`
+  @media (min-width: 320px) and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  display: flex;
+  align-self: flex-start;
+  gap: 5px;
 `;
