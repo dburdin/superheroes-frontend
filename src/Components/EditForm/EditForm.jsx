@@ -134,26 +134,31 @@ export const EditForm = ({
             type="text"
             value={editNickname}
             onChange={handleNicknameChange}
+            placeholder="Nickname"
           />
           <input
             type="text"
             value={editRealName}
             onChange={handleRealNameChange}
+            placeholder="Real Name"
           />
           <input
             type="text"
             value={editOriginDescription}
             onChange={handleOriginDescriptionChange}
+            placeholder="Description"
           />
           <input
             type="text"
             value={editSuperpowers}
             onChange={handleSuperpowersChange}
+            placeholder="Superpowers:"
           />
           <input
             type="text"
             value={editCatchPhrase}
             onChange={handleCatchPhraseChange}
+            placeholder="Catch Phrase"
           />
           <input type="file" accept="image/*" onChange={handleUploadFile} />
           <Button
