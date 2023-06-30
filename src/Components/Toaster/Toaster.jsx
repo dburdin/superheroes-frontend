@@ -13,7 +13,7 @@
     },
 
     success: {
-      duration: 3000,
+      duration: 5000,
       theme: {
         primary: "green",
         secondary: "black",

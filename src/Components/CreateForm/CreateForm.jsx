@@ -12,7 +12,7 @@ import {
   Field,
   FormLabelImage,
   SubmitButton,
-} from "./HeroForm.styled";
+} from "./CreateForm.styled";
 import { Loader } from "Components/Loader/Loader";
 
 const validationSchema = Yup.object({
@@ -22,7 +22,7 @@ const validationSchema = Yup.object({
   origin_description: Yup.string().required("Origin description is required"),
 });
 
-export const HeroForm = ({ toggleModal, postAdd, postUpdate }) => {
+export const CreateForm = ({ toggleModal, postAdd, postUpdate }) => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -73,8 +73,9 @@ export const HeroForm = ({ toggleModal, postAdd, postUpdate }) => {
       await add(data);
 
       toggleModal();
-      location.reload();
       toast.success("You successfully created a hero");
+
+      location.reload();
     } catch (error) {
       toast.error("Something went wrong. Check the fields.");
     } finally {
@@ -199,6 +200,6 @@ export const HeroForm = ({ toggleModal, postAdd, postUpdate }) => {
   );
 };
 
-HeroForm.propTypes = {
+CreateForm.propTypes = {
   toggleModal: PropTypes.func.isRequired,
 };

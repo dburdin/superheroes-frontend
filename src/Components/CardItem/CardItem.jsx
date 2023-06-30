@@ -5,6 +5,7 @@ import { getById, getImageUrl, remove, update, upload } from "API/api";
 import { Image, Item, CardContent, ButtonContainer } from "./CardItem.styled";
 import { Button } from "Components/Button/Button";
 import { Overlay, ModalWindow } from "Components/Modal/Modal.styled";
+import { Modal } from "Components/Modal/Modal";
 import { EditForm } from "Components/EditForm/EditForm";
 
 export const CardItem = ({ superHero }) => {
@@ -20,7 +21,7 @@ export const CardItem = ({ superHero }) => {
 
   const [isRemoving, setIsRemoving] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [uploadedPhoto, setUploadedPhoto] = useState(null);
 
   const toggleModal = () => {
     setIsEditing((prevIsEditing) => !prevIsEditing);
@@ -37,7 +38,7 @@ export const CardItem = ({ superHero }) => {
       setIsEditing(true);
       const { data } = await getById(_id);
 
-      setSelectedPhoto(data.images[0]);
+      setUploadedPhoto(data.images[0]);
     } catch (error) {
       toast.error("Failed to retrieve hero data");
     }
@@ -62,17 +63,15 @@ export const CardItem = ({ superHero }) => {
     <>
       <Toaster />
       {isEditing ? (
-        <Overlay>
-        <ModalWindow>
-        <EditForm
-          superHero={superHero}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-          selectedPhoto={selectedPhoto}
-          setSelectedPhoto={setSelectedPhoto}
-        />
-        </ModalWindow>
-        </Overlay>
+        <Modal>
+          <EditForm
+            superHero={superHero}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+            uploadedPhoto={uploadedPhoto}
+            setUploadedPhoto={setUploadedPhoto}
+          />
+        </Modal>
       ) : (
         <Item>
           <ButtonContainer>

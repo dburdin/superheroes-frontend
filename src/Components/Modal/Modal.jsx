@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { ModalWindow, Overlay } from "./Modal.styled";
-import { HeroForm } from "../HeroForm/HeroForm";
+import { CreateForm } from "../CreateForm/CreateForm";
 import { useKeyPress } from "hooks/useKeyPress";
 
-export const Modal = ({ toggleModal }) => {
+export const Modal = ({ toggleModal, children }) => {
   const modalRoot = document.querySelector("#modal-root");
 
   useKeyPress("Escape", toggleModal);
@@ -23,9 +23,7 @@ export const Modal = ({ toggleModal }) => {
 
   return createPortal(
     <Overlay onClick={handleClickOnOverlay}>
-      <ModalWindow>
-        <HeroForm toggleModal={handleToggleModal}></HeroForm>
-      </ModalWindow>
+      <ModalWindow>{children}</ModalWindow>
     </Overlay>,
     modalRoot
   );

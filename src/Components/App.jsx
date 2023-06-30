@@ -6,6 +6,7 @@ import { Button } from "./Button/Button";
 import { Modal } from "./Modal/Modal";
 import { CardList } from "./CardList/CardList";
 import { ButtonContainer } from "./CardItem/CardItem.styled";
+import { CreateForm } from "./CreateForm/CreateForm";
 
 import { Header } from "./Header/Header";
 import { Container } from "./Container/Container";
@@ -48,9 +49,7 @@ export const App = () => {
 
       <Container>
         <Toaster />
-        {superHeroes.length > 0 && (
-          <CardList toggleModal={toggleModal} superHeroes={superHeroes} />
-        )}
+        {superHeroes.length > 0 && <CardList superHeroes={superHeroes} />}
         {totalHits !== superHeroes.length && !isLoading && (
           <ButtonContainer>
             <Button onClick={loadMore} style={{ alignSelf: "center" }}>
@@ -59,7 +58,11 @@ export const App = () => {
           </ButtonContainer>
         )}
         {isLoading && <Loader />}
-        {showModal && <Modal toggleModal={toggleModal} />}
+        {showModal && (
+          <Modal>
+            <CreateForm toggleModal={toggleModal} />
+          </Modal>
+        )}
       </Container>
     </>
   );

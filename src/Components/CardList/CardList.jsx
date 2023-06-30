@@ -4,15 +4,11 @@ import { CardItem } from "Components/CardItem/CardItem";
 import { List } from "./CardList.styled";
 import { Children } from "react";
 
-export const CardList = ({ superHeroes, toggleModal }) => {
+export const CardList = ({ superHeroes }) => {
   return (
     <List>
       {superHeroes.map((superHero) => (
-        <CardItem
-          key={superHero._id}
-          superHero={superHero}
-          toggleModal={toggleModal}
-        />
+        <CardItem key={superHero._id} superHero={superHero} />
       ))}
     </List>
   );
@@ -20,5 +16,4 @@ export const CardList = ({ superHeroes, toggleModal }) => {
 
 CardList.propTypes = {
   superHeroes: PropTypes.arrayOf(PropTypes.object).isRequired,
-  toggleModal: PropTypes.func.isRequired,
 };

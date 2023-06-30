@@ -25,8 +25,8 @@ const validationSchema = Yup.object({
 export const EditForm = ({
   isEditing,
   setIsEditing,
-  selectedPhoto,
-  setSelectedPhoto,
+  uploadedPhoto,
+  setUploadedPhoto,
   superHero,
 }) => {
   const {
@@ -58,7 +58,7 @@ export const EditForm = ({
       const response = await upload(formData);
       const imageUrl = response.data.imageUrl;
 
-      setSelectedPhoto(imageUrl);
+      setUploadedPhoto(imageUrl);
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
     }
@@ -66,7 +66,7 @@ export const EditForm = ({
 
   const onClickRemoveButton = (event) => {
     event.preventDefault();
-    setSelectedPhoto("");
+    setUploadedPhoto("");
   };
 
   const handleUpdateClick = async (values) => {
@@ -74,7 +74,7 @@ export const EditForm = ({
       const updatedHero = {
         ...values,
         superpowers: values.superpowers.split(",").map((power) => power.trim()),
-        images: selectedPhoto ? [selectedPhoto] : [],
+        images: uploadedPhoto ? [uploadedPhoto] : [],
       };
 
       await update(_id, updatedHero);
@@ -107,7 +107,7 @@ export const EditForm = ({
           >
             Close
           </Button>
-          {selectedPhoto && (
+          {uploadedPhoto && (
             <Button
               type="button"
               onClick={onClickRemoveButton}
@@ -118,8 +118,8 @@ export const EditForm = ({
           )}
           <img
             style={{ width: "150px", alignSelf: "center" }}
-            src={getImageUrl(selectedPhoto)}
-            alt=""
+            src={getImageUrl(uploadedPhoto)}
+            alt={values.nickname}
           />
           <FormLabel>
             Nickname:
