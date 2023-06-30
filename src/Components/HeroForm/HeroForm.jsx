@@ -22,7 +22,10 @@ const validationSchema = Yup.object({
   origin_description: Yup.string().required("Origin description is required"),
 });
 
-export const HeroForm = ({ toggleModal }) => {
+export const HeroForm = ({ toggleModal, postAdd, postUpdate }) => {
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const initialValues = {
     nickname: "",
     real_name: "",
@@ -30,9 +33,6 @@ export const HeroForm = ({ toggleModal }) => {
     superpowers: "",
     catch_phrase: "",
   };
-
-  const [uploadedImage, setUploadedImage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const storedImage = localStorage.getItem("uploadedImage");

@@ -62,6 +62,8 @@ export const CardItem = ({ superHero }) => {
     <>
       <Toaster />
       {isEditing ? (
+        <Overlay>
+        <ModalWindow>
         <EditForm
           superHero={superHero}
           isEditing={isEditing}
@@ -69,6 +71,8 @@ export const CardItem = ({ superHero }) => {
           selectedPhoto={selectedPhoto}
           setSelectedPhoto={setSelectedPhoto}
         />
+        </ModalWindow>
+        </Overlay>
       ) : (
         <Item>
           <ButtonContainer>

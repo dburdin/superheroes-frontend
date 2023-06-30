@@ -1,12 +1,26 @@
 import PropTypes from "prop-types";
+import { Formik, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { useKeyPress } from "hooks/useKeyPress";
+import { toast } from "react-hot-toast";
 
-import { EditorForm } from "./EditForm.styled";
 import { Button } from "Components/Button/Button";
 import { Overlay, ModalWindow } from "Components/Modal/Modal.styled";
-import { useKeyPress } from "hooks/useKeyPress";
-import { useState, useEffect } from "react";
-import { getImageUrl, upload, update } from "API/api";
-import { toast } from "react-hot-toast";
+import { upload, update, getImageUrl } from "API/api";
+import {
+  Form,
+  FormLabel,
+  Field,
+  FormLabelImage,
+  SubmitButton,
+} from "./EditForm.styled";
+
+const validationSchema = Yup.object({
+  nickname: Yup.string().required("Nickname is required"),
+  real_name: Yup.string().required("Real Name is required"),
+  catch_phrase: Yup.string().required("Catch Phrase is required"),
+  origin_description: Yup.string().required("Origin description is required"),
+});
 
 export const EditForm = ({
   isEditing,
@@ -22,15 +36,7 @@ export const EditForm = ({
     origin_description,
     superpowers,
     catch_phrase,
-    images,
   } = superHero;
-
-  const [editNickname, setEditNickname] = useState(nickname);
-  const [editRealName, setEditRealName] = useState(real_name);
-  const [editOriginDescription, setEditOriginDescription] =
-    useState(origin_description);
-  const [editSuperpowers, setEditSuperpowers] = useState(superpowers.join(","));
-  const [editCatchPhrase, setEditCatchPhrase] = useState(catch_phrase);
 
   const toggleModal = () => {
     setIsEditing((prevIsEditing) => !prevIsEditing);
@@ -43,26 +49,6 @@ export const EditForm = ({
   };
 
   useKeyPress("Escape", toggleModal);
-
-  const handleNicknameChange = (event) => {
-    setEditNickname(event.target.value);
-  };
-
-  const handleRealNameChange = (event) => {
-    setEditRealName(event.target.value);
-  };
-
-  const handleOriginDescriptionChange = (event) => {
-    setEditOriginDescription(event.target.value);
-  };
-
-  const handleSuperpowersChange = (event) => {
-    setEditSuperpowers(event.target.value);
-  };
-
-  const handleCatchPhraseChange = (event) => {
-    setEditCatchPhrase(event.target.value);
-  };
 
   const handleUploadFile = async (event) => {
     try {
@@ -83,22 +69,17 @@ export const EditForm = ({
     setSelectedPhoto("");
   };
 
-  const handleUpdateClick = async (event) => {
-    event.preventDefault();
-
+  const handleUpdateClick = async (values) => {
     try {
       const updatedHero = {
-        nickname: editNickname,
-        real_name: editRealName,
-        origin_description: editOriginDescription,
-        superpowers: editSuperpowers.split(",").map((power) => power.trim()),
-        catch_phrase: editCatchPhrase,
+        ...values,
+        superpowers: values.superpowers.split(",").map((power) => power.trim()),
         images: selectedPhoto ? [selectedPhoto] : [],
       };
 
       await update(_id, updatedHero);
+      toast.success(`Successfully updated ${values.nickname}`);
       location.reload();
-      toast.success(`Successfully updated ${editNickname}`);
       setIsEditing(false);
     } catch (error) {
       toast.error("Oops! Something went wrong while updating the hero");
@@ -106,9 +87,19 @@ export const EditForm = ({
   };
 
   return (
-    <Overlay onClick={handleClickOnOverlay}>
-      <ModalWindow>
-        <EditorForm action="">
+    <Formik
+      initialValues={{
+        nickname,
+        real_name,
+        origin_description,
+        superpowers: superpowers.join(", "),
+        catch_phrase,
+      }}
+      validationSchema={validationSchema}
+      onSubmit={handleUpdateClick}
+    >
+      {({ values }) => (
+        <Form>
           <Button
             onClick={toggleModal}
             type="button"
@@ -130,46 +121,105 @@ export const EditForm = ({
             src={getImageUrl(selectedPhoto)}
             alt=""
           />
-          <input
-            type="text"
-            value={editNickname}
-            onChange={handleNicknameChange}
-            placeholder="Nickname"
-          />
-          <input
-            type="text"
-            value={editRealName}
-            onChange={handleRealNameChange}
-            placeholder="Real Name"
-          />
-          <input
-            type="text"
-            value={editOriginDescription}
-            onChange={handleOriginDescriptionChange}
-            placeholder="Description"
-          />
-          <input
-            type="text"
-            value={editSuperpowers}
-            onChange={handleSuperpowersChange}
-            placeholder="Superpowers:"
-          />
-          <input
-            type="text"
-            value={editCatchPhrase}
-            onChange={handleCatchPhraseChange}
-            placeholder="Catch Phrase"
-          />
-          <input type="file" accept="image/*" onChange={handleUploadFile} />
-          <Button
-            type="submit"
-            onClick={handleUpdateClick}
-            style={{ alignSelf: "center" }}
-          >
+          <FormLabel>
+            Nickname:
+            <Field
+              type="text"
+              name="nickname"
+              placeholder="Nickname"
+              value={values.nickname}
+            />
+            <ErrorMessage
+              name="nickname"
+              component="div"
+              style={{ color: "red", fontSize: "11px" }}
+            />
+          </FormLabel>
+
+          <FormLabel>
+            Real Name:
+            <Field
+              type="text"
+              name="real_name"
+              placeholder="Real Name"
+              value={values.real_name}
+            />
+            <ErrorMessage
+              name="real_name"
+              component="div"
+              style={{ color: "red", fontSize: "11px" }}
+            />
+          </FormLabel>
+
+          <FormLabel>
+            Origin Description:
+            <Field
+              type="text"
+              name="origin_description"
+              placeholder="Description"
+              value={values.origin_description}
+            />
+            <ErrorMessage
+              name="origin_description"
+              component="div"
+              style={{ color: "red", fontSize: "11px" }}
+            />
+          </FormLabel>
+
+          <FormLabel>
+            Superpowers (comma-separated):
+            <Field
+              type="text"
+              name="superpowers"
+              placeholder="Superpowers"
+              value={values.superpowers}
+            />
+            <ErrorMessage
+              name="origin_description"
+              component="div"
+              style={{ color: "red", fontSize: "11px" }}
+            />
+          </FormLabel>
+
+          <FormLabel>
+            Catch Phrase:
+            <Field
+              type="text"
+              name="catch_phrase"
+              placeholder="Catch Phrase"
+              value={values.catch_phrase}
+            />
+            <ErrorMessage
+              name="catch_phrase"
+              component="div"
+              style={{ color: "red", fontSize: "11px" }}
+            />
+          </FormLabel>
+
+          <FormLabelImage>
+            <label style={{ cursor: "pointer" }} htmlFor="imageInput">
+              Upload image
+            </label>
+            <input
+              id="imageInput"
+              name="image"
+              type="file"
+              onChange={handleUploadFile}
+              hidden
+              style={{ cursor: "pointer" }}
+            />
+            <ErrorMessage
+              name="image"
+              component="div"
+              style={{ color: "red", fontSize: "11px" }}
+            />
+          </FormLabelImage>
+
+          <Button type="submit" style={{ alignSelf: "center" }}>
             Update
           </Button>
-        </EditorForm>
-      </ModalWindow>
-    </Overlay>
+        </Form>
+      )}
+    </Formik>
   );
 };
